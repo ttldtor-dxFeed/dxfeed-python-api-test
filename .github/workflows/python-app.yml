@@ -32,7 +32,7 @@ jobs:
       - name: Get Path
         if: matrix.os == 'macos-latest'
         run: |
-          ls '$(python -c \'import site; print(site.getsitepackages()[0])\''
+          ls $(python -c 'import site; print(site.getsitepackages()[0])')/dxfeed/core
       - name: List the cache
         run: |
           pip cache list 'dxfeed*' --format=abspath
