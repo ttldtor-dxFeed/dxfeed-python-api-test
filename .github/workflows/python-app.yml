@@ -5,8 +5,7 @@ name: Python application
 
 on:
   push:
-    tags:
-    - '*'
+  pull_request:
   workflow_dispatch:
     
 
@@ -30,6 +29,10 @@ jobs:
       - name: Install
         run: |
           pip install git+https://github.com/ttldtor/dxfeed-python-api.git@EN-3260-add-compatibility-with-python-3.9-2
+      - name: Get Path
+        if: matrix.os == 'macos-latest'
+        run: |
+          python -c 'import site; print(site.getsitepackages())'
       - name: List the cache
         run: |
           pip cache list 'dxfeed*' --format=abspath
