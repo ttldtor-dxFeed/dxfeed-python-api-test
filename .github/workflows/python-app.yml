@@ -30,4 +30,5 @@ jobs:
       - name: TEST
         run: |
           pip install git+https://github.com/ttldtor/dxfeed-python-api.git@EN-3260-add-compatibility-with-python-3.9-2
+          pip cache list dxfeed* --format=abspath
           python main.py
