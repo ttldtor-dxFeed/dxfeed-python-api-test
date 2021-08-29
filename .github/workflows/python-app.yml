@@ -13,8 +13,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        os: [macos-latest] # ubuntu-latest, windows-latest]
+        python-version: [3.6] #, 3.7, 3.8, 3.9]
 
     runs-on: ${{ matrix.os }}
 
@@ -32,7 +32,7 @@ jobs:
       - name: Get Path
         if: matrix.os == 'macos-latest'
         run: |
-          python -c 'import site; print(site.getsitepackages())'
+          ls '$(python -c \'import site; print(site.getsitepackages()[0])\''
       - name: List the cache
         run: |
           pip cache list 'dxfeed*' --format=abspath
